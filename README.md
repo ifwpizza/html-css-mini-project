@@ -48,12 +48,6 @@ Tetris-Ultra/
 ├── style.css       # Complete UI Styling
 └── README.md       # Project Documentation
 
-▶️ How to Run
-	1.	Clone the repository:
-git clone https://github.com/your-username/your-repo-name.git
-	2.	Open index.html in your browser.
-	3.	Click Play Now to launch the game.
-
 ⸻
 
 🎯 Project Purpose
