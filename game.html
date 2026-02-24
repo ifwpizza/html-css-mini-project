@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetris Ultra</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Russo+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="game-container">
+    <div class="left-panel">
+        <div class="logo">
+            <span class="logo-t">T</span>
+            <span class="logo-e">E</span>
+            <span class="logo-t2">T</span>
+            <span class="logo-r">R</span>
+            <span class="logo-i">I</span>
+            <span class="logo-s">S</span>
+        </div>
+
+        <div class="hold-section">
+            <div class="panel-label">HOLD</div>
+            <div class="piece-preview">
+                <div class="mini-grid">
+                    <div class="mc" style="grid-column:2;grid-row:1;background:#f59e0b;"></div>
+                    <div class="mc" style="grid-column:1;grid-row:2;background:#f59e0b;"></div>
+                    <div class="mc" style="grid-column:2;grid-row:2;background:#f59e0b;"></div>
+                    <div class="mc" style="grid-column:3;grid-row:2;background:#f59e0b;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="time-section">
+            <div class="panel-label">TIME</div>
+            <div class="timer">
+                <span class="time-digit">00</span>
+                <span class="time-sep">:</span>
+                <span class="time-digit">45</span>
+                <span class="time-sep">:</span>
+                <span class="time-digit">56</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="board-wrapper">
+        <div class="board-frame">
+            <div class="board" id="board"></div>
+        </div>
+    </div>
+    <div class="right-panel">
+
+        <div class="ultra-logo">
+            <div class="ultra-text">Ultra</div>
+        </div>
+        <div class="next-section">
+            <div class="panel-label">NEXT</div>
+            <div class="next-queue">
+                <div class="piece-preview">
+                    <div class="mini-grid next-grid">
+                        <div class="mc" style="grid-column:1;grid-row:1;background:#06b6d4;"></div>
+                        <div class="mc" style="grid-column:2;grid-row:1;background:#06b6d4;"></div>
+                        <div class="mc" style="grid-column:3;grid-row:1;background:#06b6d4;"></div>
+                        <div class="mc" style="grid-column:4;grid-row:1;background:#06b6d4;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="score-section">
+            <div class="score-badge">NEW<br><span>BEST</span></div>
+            <div class="score-block">
+                <div class="score-label">HIGH SCORE</div>
+                <div class="score-value">453</div>
+            </div>
+            <div class="score-block">
+                <div class="score-label">SCORE</div>
+                <div class="score-value">453</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const board = document.getElementById('board');
+const COLS = 10;
+const ROWS = 20;
+const CELL_SIZE = 28;
+
+const COLORS = {
+1:'#06b6d4',
+2:'#facc15',
+3:'#f97316',
+4:'#3b82f6',
+5:'#22c55e',
+6:'#ef4444',
+7:'#a855f7'
+};
+
+const layout = [
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,3,0,0,0],
+[0,0,0,0,0,3,3,0,0,0],
+[0,0,0,2,2,3,2,2,0,0],
+[0,0,0,2,2,3,6,6,0,0],
+[5,0,4,4,7,7,7,6,6,0],
+[5,5,4,2,2,3,7,8,8,0],
+[5,1,4,2,2,3,3,8,4,4],
+[1,1,1,6,6,5,5,8,4,0],
+];
+
+for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+
+        const val = layout[r][c];
+
+        if (val !== 0) {
+            cell.classList.add('filled');
+
+            cell.style.background =
+                `linear-gradient(135deg, ${COLORS[val]}cc, ${COLORS[val]})`;
+            if (r <= 10) { 
+                cell.classList.add('active');
+
+                const distance = r * 28;
+                cell.style.setProperty('--drop-distance', `${distance}px`);
+            }
+        }
+
+        board.appendChild(cell);
+    }
+}
+
+</script>
+
+
+</body>
+</html>
